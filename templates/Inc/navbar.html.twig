@@ -1,5 +1,6 @@
-
+<div>
 <nav class = "navbar navbar-expand-lg navbar-dark bg-primary">
+
   <a class="navbar-brand" href="#"  > Receipt Manager </a>
   <button class = "navbar-toggler" type = "button" data-toggle = "collapse" data-target = "# navbarColor01" aria-controls = "navbarColor01" aria-extended = "false" aria-label = "Toggle navigation ">
     <span class = "navbar-toggler-icon"> </span>
@@ -24,15 +25,18 @@
         <a class="nav-link" href="/best_receipt_list"> Best Receipt</a>
       </li>
 
-        <li class = "nav-item">
-        <a class="nav-link" href="/manage"> Manage</a>
-      </li>
-
-      <li class = "nav-item">
-        <a class="nav-link" href="/logout"> Logout</a>
-      </li>
-      
     </ul>
     
+  <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <button type="button" class="btn btn-danger">Account</button>
+  <div class="btn-group" role="group">
+    <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+      <a class="dropdown-item" href="/manage">Manage</a>
+      <a class="dropdown-item" href="/logout">Logout</a>
+    </div>
   </div>
+</div>
+
 </nav>
+</div>
