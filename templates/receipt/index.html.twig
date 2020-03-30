@@ -1,0 +1,57 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}List of Receipts{% endblock %}
+
+{% block body %}
+
+{% if receipt %}
+<h1> List of Receipts</h1>
+<table id="receipt" class="table table-striped"> 
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Description</th>
+<th>Instruction</th>
+<th>Prepararion</th>
+<th>Level</th>
+<th>Picture</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody> 
+
+{% for receipt in receipt %}
+<tr> 
+<td> {{ receipt.id }} </td>
+<td> {{ receipt.name }} </td>
+<td> {{ receipt.description}} </td>
+<td> {{ receipt.instruction }} </td>
+<td> {{ receipt.preparation }} </td>
+<td> {{ receipt.level}} </td>
+<td> {{ receipt.picture }} </td>
+
+<td> 
+<a href="/receipt/{{ receipt.id }}" class="btn fa fa-eye"></a>
+<a href="/receipt/update/{{ receipt.id }}" class="btn fa fa-refresh"></a>
+<a href="#" class="btn fa fa-trash delete-receipt" data-id="{{ receipt.id }}"></a>  
+<a href="/receipt/add" class="btn fa fa-plus"></a>
+
+</td>
+</tr>
+ {% endfor %}
+</tbody>
+</table>
+{% else  %}
+<p> The list of receipts is empty</p>
+
+{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="/js/main.js">  </script>
+
+{% endblock %}
+

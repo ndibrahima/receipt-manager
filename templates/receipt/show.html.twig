@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The list of receipts!{% endblock %}
+
+{% block body %}
+ 
+<h1> {{ receipt.id }} </h1>
+<p> {{ receipt.name }} </p>
+<p> {{ receipt.description }} </p>
+<p> {{ receipt.instruction }} </p>
+<p> {{ receipt.preparation }} </p>
+<p> {{ receipt.level }} </p>
+<p> {{ receipt.picture }} </p>
+
+<a href="/receipt_list" class="btn 
+btn-dark">Retour</a>
+
+{% endblock %}
+
+{# templates/receipt/show.html.twig #}
