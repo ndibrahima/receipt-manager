@@ -1,0 +1,55 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}  
+List of ingrediants 
+ {% endblock %}
+
+{% block body %}
+
+{% if ingrediant %}
+<div class="card shadow mb-4">
+<div class="card-header py-3">
+<h6 class="m-0 font-weight-bold text-primary">List of Ingrediants</h6>
+</div>
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+ <thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Price</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody> 
+
+{% for ingrediant in ingrediant %}
+<tr> 
+<td> {{ ingrediant.id }} </td>
+<td> {{ ingrediant.name }} </td>
+<td> {{ ingrediant.price}} </td>
+<td> 
+<a href="/ingrediant/{{ ingrediant.id }}" class="fas fa-eye"></a>
+<a href="/ingrediant/update/{{ ingrediant.id }}" class="far fa-edit"></a>
+<a href="#" class="fas fa-trash" data-id="{{ ingrediant.id }}"></a>  
+<a href="/ingrediant/add" class="fas fa-plus"></a>
+
+</td>
+</tr>
+ {% endfor %}
+</tbody>
+</table>
+{% else  %}
+<p> The list of ingrediants is empty</p>
+
+{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="/js/main.js">  </script>
+
+{% endblock %}
+

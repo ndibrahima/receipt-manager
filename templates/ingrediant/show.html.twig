@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The list of ingrediant!{% endblock %}
+
+{% block body %}
+ 
+<h1> {{ ingrediant.id }} </h1>
+<p> {{ ingrediant.name }} </p>
+<p> {{ ingrediant.price }} </p>
+
+<a href="/ingrediant_list" class="btn 
+btn-dark">Retour</a>
+
+{% endblock %}
+
+{# templates/ingrediant/show.html.twig #}

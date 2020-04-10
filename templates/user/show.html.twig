@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La liste des utilisateurs !{% endblock %}
+
+{% block body %}
+ 
+<h1> {{ user.id }} </h1>
+<p> {{ user.username }} </p>
+<p> {{ user.email}} </p>
+<p> {{ user.password}}
+
+<a href="/user" class="btn 
+btn-dark">Retour</a>
+
+{% endblock %}
+
+{# templates/card/show.html.twig #}

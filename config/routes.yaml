@@ -1,3 +1,11 @@
 #index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+   # path: /login
+   # controller: App\Controller\SecurityController::login
+# config/routes.yaml
+
+login:
+    path:       /login
+    controller: App\Controller\SecurityController::login
+    methods: GET|POST
+
+
