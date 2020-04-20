@@ -1,14 +1,15 @@
 
-{% extends 'base.html.twig' %}
+{% extends 'template.html.twig' %}
 
 {% block title %}List of Receipts{% endblock %}
+
 
 {% block body %}
 
 {% if receipt %}
 <div class="card shadow mb-4">
 <div class="card-header py-3">
-<h6 class="m-0 font-weight-bold text-primary">List of Receipts</h6>
+<h6 class="m-0 font-weight-bold text-primary">Best Receipts</h6>
 </div>
 <div class="card-body">
 <div class="table-responsive">
@@ -28,7 +29,8 @@
 </thead>
 <tbody>
 
-{% for receipt in receipt %}
+
+{% for receipt in receipt|filter (receipt => receipt.level > 4) %}
 <tr> 
 <td> {{ receipt.id }} </td>
 <td> {{ receipt.name }} </td>
@@ -42,17 +44,13 @@
  <img alt="card-img-top" src=" {{ vich_uploader_asset(receipt, 'imageFile') | imagine_filter('thumb') }}" img/receipt/{{ receipt.imageName }}" >
 </td>
 
-<td> 
-<a href="/receipt/{{ receipt.id }}" <i class="fas fa-eye"></i></a>
-<a href="/receipt/update/{{ receipt.id }}" class="far fa-edit"></a>
-<a href="/receipt/add" class="fas fa-plus"></a>
-<a href="#" class=" fas fa-trash" data-id="{{ receipt.id }}"></a>  
-
-</td>
 </tr>
  {% endfor %}
+
+
 </tbody>
 </table>
+          
 </div>
 </div>
 </div>

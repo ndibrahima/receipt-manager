@@ -12,7 +12,8 @@
 <p> {{ receipt.instruction }} </p>
 <p> {{ receipt.preparation }} </p>
 <p> {{ receipt.level }} </p>
-<p> {{ receipt.picture }} </p>
+<p><img alt="card-img-top" src=" {{ vich_uploader_asset(receipt, 'imageFile') | imagine_filter('thumb') }}" img/receipt/{{ receipt.imageName }}" > 
+</p>
 
 <a href="/receipt_list" class="btn 
 btn-dark">Retour</a>

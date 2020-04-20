@@ -54,7 +54,7 @@ class Receipt
     private $instruction;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=100)
      */
     private $preparation;
 
@@ -121,12 +121,12 @@ class Receipt
         return $this;
     }
 
-    public function getPreparation(): ?int
+    public function getPreparation(): ?string
     {
         return $this->preparation;
     }
 
-    public function setPreparation(int $preparation): self
+    public function setPreparation(string $preparation): self
     {
         $this->preparation = $preparation;
 

@@ -57,6 +57,25 @@ class ReceiptController extends AbstractController
         return $this->render('receipt/allreceipt.html.twig', array ('receipt' => $receipt));
      }
 
+     /**
+     * @Route("/bestreceipt", methods={"GET"}, name="app_bestreceipt")
+     * 
+     */ 
+    public function BestReceipt(Request $request, PaginatorInterface $paginator) {
+
+        $receipt= $this->getDoctrine()->getRepository
+        (Receipt::class)->findAll();
+
+        $receipt = $paginator->paginate(
+        $receipt, // Requête contenant les données à paginer (ici nos articles)
+        $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+        6 // Nombre de résultats par page
+        );
+
+        return $this->render('receipt/bestreceipt.html.twig', array ('receipt' => $receipt));
+     }
+
+
 
     /**
      * @Route("/receipt/add", name="receipt_add")
@@ -68,10 +87,8 @@ class ReceiptController extends AbstractController
         $form = $this->createFormBuilder($receipt)
             ->add('name', TextType::class)
             ->add('description', TextType::class)
-            ->add('instruction', TextareaType::class)
-            ->add('preparation', NumberType::class)
-            ->add('preparation', NumberType::class)
-            ->add('preparation', NumberType::class)
+            ->add('instruction', TextType::class)
+            ->add('preparation', TextareaType::class)
             ->add('level',      NumberType::class)
             ->add('imageFile', FileType::class)
             ->add('ingrediants', EntityType::class, array(
@@ -112,8 +129,7 @@ class ReceiptController extends AbstractController
         ->add('description', TextType::class, array('data_class' => null))
         ->add('instruction', TextareaType::class, array('data_class' => null))
         ->add('preparation', NumberType::class, array('data_class' => null))
-        ->add('preparation', NumberType::class, array('data_class' => null))
-        ->add('preparation', NumberType::class, array('data_class' => null))
+        ->add('preparation', TextareaType::class, array('data_class' => null))
         ->add('level',      NumberType::class, array('data_class' => null))
         ->add('picture', FileType::class, array('data_class' => null))
         ->add('ingrediants', EntityType::class, array(
