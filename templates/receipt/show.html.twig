@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The list of receipts!{% endblock %}
+
+{% block body %}
+ 
+ <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{{ receipt.id }}</h1>
+    <p class="lead">{{ receipt.name }}</p>
+    <p> {{ receipt.description }} </p>
+<p> {{ receipt.instruction }} </p>
+<p> {{ receipt.preparation }} </p>
+<p> {{ receipt.level }} </p>
+<p><img alt="card-img-top" src=" {{ vich_uploader_asset(receipt, 'imageFile') | imagine_filter('thumb') }}" img/receipt/{{ receipt.imageName }}" > 
+</p>
+
+<a href="/receipt_list" class="btn 
+btn-dark">Retour</a>
+</div>
+</div>
+{% endblock %}
+
+{# templates/receipt/show.html.twig #}

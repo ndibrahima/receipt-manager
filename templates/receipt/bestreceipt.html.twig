@@ -1,0 +1,68 @@
+
+{% extends 'template.html.twig' %}
+
+{% block title %}List of Receipts{% endblock %}
+
+
+{% block body %}
+
+{% if receipt %}
+<div class="card shadow mb-4">
+<div class="card-header py-3">
+<h6 class="m-0 font-weight-bold text-primary">Best Receipts</h6>
+</div>
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Ingrediant</th>
+<th>Description</th>
+<th>Instruction</th>
+<th>Prepararion</th>
+<th>Level</th>
+<th>Picture</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+
+
+{% for receipt in receipt|filter (receipt => receipt.level > 4) %}
+<tr> 
+<td> {{ receipt.id }} </td>
+<td> {{ receipt.name }} </td>
+<td> {{ receipt.ingrediants.name }} </td>
+<td> {{ receipt.description}} </td>
+<td> {{ receipt.instruction }} </td>
+<td> {{ receipt.preparation }} </td>
+<td> {{ receipt.level}} </td>
+
+<td>
+ <img alt="card-img-top" src=" {{ vich_uploader_asset(receipt, 'imageFile') | imagine_filter('thumb') }}" img/receipt/{{ receipt.imageName }}" >
+</td>
+
+</tr>
+ {% endfor %}
+
+
+</tbody>
+</table>
+          
+</div>
+</div>
+</div>
+{% else  %}
+<p> The list of receipts is empty</p>
+
+{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="/js/main.js">  </script>
+
+{% endblock %}
+

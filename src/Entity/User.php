@@ -56,6 +56,11 @@ class User implements UserInterface
      */
     private $isActive;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Share", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $share;
+
 
     public function getId(): ?int
     {
@@ -173,5 +178,23 @@ class User implements UserInterface
 	{
 		return $this->username;
 	}
+
+    public function getShare(): ?Share
+    {
+        return $this->share;
+    }
+
+    public function setShare(?Share $share): self
+    {
+        $this->share = $share;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newUser = null === $share ? null : $this;
+        if ($share->getUser() !== $newUser) {
+            $share->setUser($newUser);
+        }
+
+        return $this;
+    }
     
 }
