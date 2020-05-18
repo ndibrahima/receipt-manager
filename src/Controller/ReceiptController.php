@@ -23,7 +23,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Knp\Component\Pager\PaginatorInterface; 
 
 
 class ReceiptController extends AbstractController
@@ -43,25 +42,20 @@ class ReceiptController extends AbstractController
      * @Route("/acceuil", methods={"GET"}, name="app_homepage")
      * 
      */ 
-    public function ReceiptAll(Request $request, PaginatorInterface $paginator) {
+    public function ReceiptAll(Request $request) {
 
         $receipt= $this->getDoctrine()->getRepository
         (Receipt::class)->findAll();
 
-        $receipt = $paginator->paginate(
-        $receipt, // Requête contenant les données à paginer (ici nos articles)
-        $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-        6 // Nombre de résultats par page
-        );
-
+      
         return $this->render('receipt/allreceipt.html.twig', array ('receipt' => $receipt));
      }
 
      /**
-     * @Route("/bestreceipt", methods={"GET"}, name="app_bestreceipt")
+     * @Route("/bestreceipt", methods={"GET"}, name="after_login_route_name")
      * 
      */ 
-    public function BestReceipt(Request $request, PaginatorInterface $paginator) {
+    public function BestReceipt(Request $request) {
 
         $receipt= $this->getDoctrine()->getRepository
         (Receipt::class)->findAll();
@@ -86,11 +80,11 @@ class ReceiptController extends AbstractController
             ->add('preparation', TextareaType::class)
             ->add('level',      NumberType::class)
             ->add('imageFile', FileType::class)
-            ->add('ingrediants', EntityType::class, array(
+            ->add('ingrediant', EntityType::class, array(
                 'class'=>'App\Entity\Ingrediant',
                 'choice_label'=>'name',
                 'expanded'=>false,
-                'multiple'=>false
+                'multiple'=>true
             ))
             ->add('save', SubmitType::class, ['label' => 'Add Receipt'])
             ->getForm();
@@ -123,15 +117,14 @@ class ReceiptController extends AbstractController
         ->add('name', TextType::class, array('data_class' => null))
         ->add('description', TextType::class, array('data_class' => null))
         ->add('instruction', TextareaType::class, array('data_class' => null))
-        ->add('preparation', NumberType::class, array('data_class' => null))
         ->add('preparation', TextareaType::class, array('data_class' => null))
         ->add('level',      NumberType::class, array('data_class' => null))
-        ->add('picture', FileType::class, array('data_class' => null))
-        ->add('ingrediants', EntityType::class, array(
+        ->add('imageFile', FileType::class, array('data_class' => null))
+        ->add('ingrediant', EntityType::class, array(
             'class'=>'App\Entity\Ingrediant',
             'choice_label'=>'name',
             'expanded'=>false,
-            'multiple'=>false
+            'multiple'=>true
         ))
         ->add('save', SubmitType::class, ['label' => 'Update Receipt'])
             ->getForm();

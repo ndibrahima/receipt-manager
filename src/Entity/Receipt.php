@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -64,19 +66,15 @@ class Receipt
     private $level;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * 
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @ORM\ManyToMany(targetEntity="App\Entity\Ingrediant", inversedBy="receipts")
      */
-    private $picture;
+    private $ingrediant;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Ingrediant", inversedBy="receipts")
-     * @ORM\JoinColumn(nullable=false)
-     */
+    public function __construct()
+    {
+        $this->ingrediant = new ArrayCollection();
+    }
 
-     
-    private $ingrediants;
 
     
 
@@ -145,29 +143,6 @@ class Receipt
         return $this;
     }
 
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(string $picture): self
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    public function getIngrediants(): ?Ingrediant
-    {
-        return $this->ingrediants;
-    }
-
-    public function setIngrediants(?Ingrediant $ingrediants): self
-    {
-        $this->ingrediants = $ingrediants;
-
-        return $this;
-    }
     
     /**
      * Get the value of imageName
@@ -209,6 +184,32 @@ class Receipt
     public function setImageFile(File $imageFile)
     {
         $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ingrediant[]
+     */
+    public function getIngrediant(): Collection
+    {
+        return $this->ingrediant;
+    }
+
+    public function addIngrediant(Ingrediant $ingrediant): self
+    {
+        if (!$this->ingrediant->contains($ingrediant)) {
+            $this->ingrediant[] = $ingrediant;
+        }
+
+        return $this;
+    }
+
+    public function removeIngrediant(Ingrediant $ingrediant): self
+    {
+        if ($this->ingrediant->contains($ingrediant)) {
+            $this->ingrediant->removeElement($ingrediant);
+        }
 
         return $this;
     }

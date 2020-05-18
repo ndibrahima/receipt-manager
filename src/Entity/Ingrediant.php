@@ -29,9 +29,10 @@ class Ingrediant
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Receipt", mappedBy="ingrediants", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Receipt", mappedBy="ingrediant")
      */
     private $receipts;
+
 
     public function __construct()
     {
@@ -79,7 +80,7 @@ class Ingrediant
     {
         if (!$this->receipts->contains($receipt)) {
             $this->receipts[] = $receipt;
-            $receipt->setIngrediants($this);
+            $receipt->addIngrediant($this);
         }
 
         return $this;
@@ -89,12 +90,11 @@ class Ingrediant
     {
         if ($this->receipts->contains($receipt)) {
             $this->receipts->removeElement($receipt);
-            // set the owning side to null (unless already changed)
-            if ($receipt->getIngrediants() === $this) {
-                $receipt->setIngrediants(null);
-            }
+            $receipt->removeIngrediant($this);
         }
 
         return $this;
-    }
+    }    
+
+    
 }

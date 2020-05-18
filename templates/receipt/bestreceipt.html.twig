@@ -24,7 +24,6 @@
 <th>Prepararion</th>
 <th>Level</th>
 <th>Picture</th>
-<th>Actions</th>
 </tr>
 </thead>
 <tbody>
@@ -34,11 +33,13 @@
 <tr> 
 <td> {{ receipt.id }} </td>
 <td> {{ receipt.name }} </td>
-<td> {{ receipt.ingrediants.name }} </td>
 <td> {{ receipt.description}} </td>
 <td> {{ receipt.instruction }} </td>
 <td> {{ receipt.preparation }} </td>
 <td> {{ receipt.level}} </td>
+{% for receipt in receipt.getIngrediant %}
+<td> {{ receipt.name }} </td>
+{% endfor %}
 
 <td>
  <img alt="card-img-top" src=" {{ vich_uploader_asset(receipt, 'imageFile') | imagine_filter('thumb') }}" img/receipt/{{ receipt.imageName }}" >

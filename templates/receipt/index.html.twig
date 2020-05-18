@@ -17,12 +17,13 @@
 <tr>
 <th>#</th>
 <th>Name</th>
-<th>Ingrediant</th>
 <th>Description</th>
 <th>Instruction</th>
 <th>Prepararion</th>
 <th>Level</th>
 <th>Picture</th>
+<th>Ingrediant</th>
+
 <th>Actions</th>
 </tr>
 </thead>
@@ -32,7 +33,6 @@
 <tr> 
 <td> {{ receipt.id }} </td>
 <td> {{ receipt.name }} </td>
-<td> {{ receipt.ingrediants.name }} </td>
 <td> {{ receipt.description}} </td>
 <td> {{ receipt.instruction }} </td>
 <td> {{ receipt.preparation }} </td>
@@ -41,6 +41,10 @@
 <td>
  <img alt="card-img-top" src=" {{ vich_uploader_asset(receipt, 'imageFile') | imagine_filter('thumb') }}" img/receipt/{{ receipt.imageName }}" >
 </td>
+
+{% for receipt in receipt.getIngrediant %}
+<td> {{ receipt.name }} </td>
+{% endfor %}
 
 <td> 
 <a href="/receipt/{{ receipt.id }}" <i class="fas fa-eye"></i></a>
