@@ -24,7 +24,7 @@
    - For the database the ingredient table is composed of a name and a price(Done)
    - For the database the recipe table is composed of a name, description, preparation, instruction, level and a picture(Done)
    - For the database the user table is composed of a username, email, password and role (Done)
-   
+
 ```
 
 ## 💾 Install
@@ -112,11 +112,7 @@ Create the table on datatbase.
   user_show                     ANY        ANY      ANY    /user/{id}
   user_update                   GET|POST   ANY      ANY    /user/update/{id}
   user_delete                   DELETE     ANY      ANY    /user/delete/{id}
-  easyadmin                     ANY        ANY      ANY    /admin/
-  liip_imagine_filter_runtime   GET        ANY      ANY    /media/cache/resolve/{filter}/rc/{hash}/{path}
-  liip_imagine_filter           GET        ANY      ANY    /media/cache/resolve/{filter}/{path}
   login                         GET|POST   ANY      ANY    /login
- ----------------------------- ---------- -------- ------ ------------------------------------------------
 
 ```
 ## Com

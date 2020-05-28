@@ -27,7 +27,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Knp\Component\Pager\PaginatorInterface; 
 
 
 
@@ -47,13 +46,13 @@ class ShareController extends AbstractController
 
         $message = (new \Swift_Message('Hello Receipt'))
 
-        //on attribut l'expéditeur
+        //Assign sender
         ->setFrom('ouibay666@gmail.com')
 
-        // on attribut le destinataire
+        // assign recipient
         ->setTo($share['email'])
 
-        //on crée body du message avec la vue Twig
+        //create the body of message with Twig view
          ->setBody(
              $this->renderView(
                  'emails/share.html.twig', compact('share')
@@ -61,7 +60,7 @@ class ShareController extends AbstractController
              'text/html'
           )
           ;  
-          //on envoie le message
+          //send the message
           $mailer->send($message);
 
           $this->addFlash('message', 'Le message a été bien envoyé');
