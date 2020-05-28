@@ -1,10 +1,31 @@
-# back-end
-<h1 align="center">Welcome to enjoy-rennes 👋</h1>
+# Recipe-manager
+<h1 align="center">Welcome to Recipe Manager 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
 > Symfony application
+
+## 🔨 The realizations
+
+```sh
+  
+   - Users can create account an login(Done)
+   - Users can edit accounts(Done)
+   - Users can add and edit ingredients(Done)
+   - Users can add and edit a recipe(Done)
+   - Admin User can delete ingrediant & recipe(Done)
+   - User can share recipe ( In progress, 80% done)
+   - Share recipe by email ( In progress)
+   - A page that displays all recipes(Done)
+   - A page that displays all ingredients(Done)
+   - A page that displays the best recipes with a search bar( Done)
+   - A page to manage user Profile( Done 80% complete)
+   - For the database the ingredient table is composed of a name and a price(Done)
+   - For the database the recipe table is composed of a name, description, preparation, instruction, level and a picture(Done)
+   - For the database the user table is composed of a username, email, password and role (Done)
+   
+```
 
 ## 💾 Install
 
@@ -29,11 +50,19 @@ symfony server:start
 
 ## Database connection
 
-Open the file Add this line on the file ```.env``` and replace by your ```db_user```, ```db_password```, ```db_name```.
+Open the file Add or Modify this line on the file ```.env``` and replace by your ```db_user```, ```db_password```, ```db_name```.
 
 ```sh
 DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"
 ```
+
+## share recipe by email
+
+Open the file Add or Modify this line on the file ```.env``` and replace the mailer_url by your ```email_adress```, ```email_password```, ```host```.
+
+For exemple: MAILER_URL=gmail://mailsender@gmail.com:mypassword@localhost
+
+
 ## Database importation(Option 1)
 
 ```sh
@@ -55,11 +84,6 @@ php bin/console doctrine:migrations:migrate
 ```
 Create the table on datatbase.
 
-## Lancer le projet
-
-```sh
-symfony server:start
-```
 
 ## Routes
 ```sh
