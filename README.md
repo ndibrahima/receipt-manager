@@ -55,6 +55,12 @@ php bin/console doctrine:migrations:migrate
 ```
 Create the table on datatbase.
 
+## Lancer le projet
+
+```sh
+symfony server:start
+```
+
 ## Routes
 ```sh
  

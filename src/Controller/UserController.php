@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Bundle\FrameworkBundle\Controller;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -16,12 +17,14 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class UserController extends AbstractType
+class UserController extends AbstractController
 {
     
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -91,6 +94,9 @@ class UserController extends AbstractType
 
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
+
+             //   $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+              //  $user->setPassword($password);
                 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->flush();
