@@ -1,2 +1,2 @@
 # receipt-manager
-Receipt Manager Project
+Recipe Manager 
