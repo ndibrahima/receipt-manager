@@ -52,6 +52,7 @@ class ShareController extends AbstractController
         // assign recipient
         ->setTo($share['email'])
 
+
         //create the body of message with Twig view
          ->setBody(
              $this->renderView(
@@ -60,10 +61,12 @@ class ShareController extends AbstractController
              'text/html'
           )
           ;  
+
           //send the message
           $mailer->send($message);
+          
 
-          $this->addFlash('message', 'Le message a été bien envoyé');
+          $this->addFlash('message', 'Your receipt sahre was succesfuly');
           return $this->redirectToRoute('app_homepage');
     }
 

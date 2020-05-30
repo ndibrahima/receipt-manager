@@ -109,6 +109,9 @@ class UserController extends AbstractController
             ]);
     }
 
+
+    //for the administrator
+
     /**
      * @Route("/user/delete/{id}", methods={"DELETE"}, name="user_delete")
      * 

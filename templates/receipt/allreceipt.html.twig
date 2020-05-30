@@ -1,6 +1,6 @@
  {% extends 'base.html.twig' %}
 
-{% block title %}List of Receipts{% endblock %}
+{% block title %}List of recipes{% endblock %}
 
 {% block body %}
 
@@ -9,27 +9,29 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Welcome to Receipt Manager </h1>
+            <h1 class="h3 mb-0 text-gray-800">Welcome to Recipe Manager </h1>
           </div>
           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Card  -->
       {% for receipt in receipt %}
             
             <div class="col-xl-4 col-md-6 mb-4">
             <div class="col-auto">
-                      <a class="fas fa-share text-black-300" href="/share"></a>
-                    </div>
+                      <a class="fas fa-share text-black-300" href="/share"></a> 
+                      <a class="fas fa-eye text-black-300" href="/receipt/{{ receipt.id }}"></a>
+                      <a class="fas fa-plus text-black-300" href="/receipt/add"></a>
+                      
+                    </div>   
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-3">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >{{ receipt.name}} </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{receipt.id}}</div>
-                    </div>
+                    </div> 
                     <div class="col-auto">
                        <i class=""> <img alt="card-img-top" src=" {{ vich_uploader_asset(receipt, 'imageFile') | imagine_filter('thumb') }}" img/receipt/{{ receipt.imageName }}" ></i>
-
 				         	</div>
                   </div>
                 </div>
