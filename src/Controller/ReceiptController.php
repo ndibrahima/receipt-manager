@@ -38,6 +38,7 @@ class ReceiptController extends AbstractController
 
         return $this->render('receipt/index.html.twig', array ('receipt' => $receipt));
      }
+     
     /**
      * @Route("/acceuil", methods={"GET"}, name="app_homepage")
      * 
@@ -178,4 +179,56 @@ class ReceiptController extends AbstractController
     $response->send();
 
     }
+
+    //share recipe by id
+
+    /**
+     * @Route("receipt/share/{id}", methods={"GET", "POST"}, name="share")
+     */
+    public function share(Request $request, \Swift_Mailer $mailer, $id) {  
+    
+
+        $share = $this->getDoctrine()->getRepository
+        (Share::class)->find($id);
+    
+        $form = $this->createForm(ShareType::class);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $share = $form->getData(); 
+    
+            $message = (new \Swift_Message('Hello Receipt'))
+    
+            //Assign sender
+            ->setFrom('ouibay666@gmail.com')
+    
+            // assign recipient
+            ->setTo($share['email'])
+    
+    
+            //create the body of message with Twig view
+             ->setBody(
+                 $this->renderView(
+                     'emails/share.html.twig', compact('share')
+                 ),
+                 'text/html'
+              )
+              ;  
+    
+              //send the message
+              $mailer->send($message);
+              
+    
+              $this->addFlash('message', 'Your receipt sahre was succesfuly');
+              return $this->redirectToRoute('app_homepage');
+        }
+    
+        return $this->render('share/index.html.twig', [
+            'shareForm' => $form->createView(), array 
+            ('share' => $share)
+            
+        ]);
+    
+                
+    }   
 }

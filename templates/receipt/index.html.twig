@@ -38,6 +38,8 @@
 <td> {{ receipt.preparation }} </td>
 <td> {{ receipt.level}} </td>
 
+
+
 <td>
  <img alt="card-img-top" src=" {{ vich_uploader_asset(receipt, 'imageFile') | imagine_filter('thumb') }}" img/receipt/{{ receipt.imageName }}" >
 </td>
@@ -50,7 +52,7 @@
 <a href="/receipt/{{ receipt.id }}" <i class="fas fa-eye"></i></a>
 <a href="/receipt/update/{{ receipt.id }}" class="far fa-edit"></a>
 <a href="/receipt/add" class="fas fa-plus"></a>
-<a href="#" class=" fas fa-trash" data-id="{{ receipt.id }}"></a>  
+<a href="#" class="fas fa-trash" data-id="{{ receipt.id }}"></a>  
 
 </td>
 </tr>

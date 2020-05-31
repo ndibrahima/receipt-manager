@@ -44,6 +44,11 @@ class ShareType extends AbstractType
             ->add('subject', textType::class)
             ->add('message', TextAreaType::class)
             ->add('email', EmailType::class)
+            ->add('user', EntityType::class, array(
+                'class'=>'App\Entity\User',
+                'choice_label'=>'username',
+                'expanded'=>false,
+                'multiple'=>false))
             ->add('Share', SubmitType::class)
 
         ;

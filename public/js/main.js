@@ -5,7 +5,7 @@ const user = document.getElementById('user');
  if (user) {
      user.addEventListener('click', e => {
         
-        if (e.target.className === 'btn fa fa-trash delete-user'){
+        if (e.target.className === 'fas fa-trash'){
           
             if (confirm('Are you sure?')) {
               const id = e.target.getAttribute('data-id'); 
@@ -24,7 +24,7 @@ const ingrediant = document.getElementById('ingrediant');
 if (ingrediant) {
     ingrediant.addEventListener('click', e => {
        
-       if (e.target.className === 'btn fa fa-trash delete-ingrediant'){
+       if (e.target.className === 'fas fa-trash delete-ingrediant'){
          
            if (confirm('Are you sure?')) {
              const id = e.target.getAttribute('data-id'); 
@@ -43,7 +43,7 @@ const receipt = document.getElementById('receipt');
  if (receipt) {
      receipt.addEventListener('click', e => {
         
-        if (e.target.className === 'btn fa fa-trash delete-receipt'){
+        if (e.target.className === 'fas fa-trash'){
           
             if (confirm('Are you sure?')) {
               const id = e.target.getAttribute('data-id'); 
